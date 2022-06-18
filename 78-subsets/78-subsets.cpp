@@ -1,26 +1,22 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
+        int n=nums.size();
+        int bits=1<<n;
         vector<vector<int>>ans={{}};
-        for(int i=0;i<nums.size();i++)
+        for(int i=1;i<bits;i++)
         {
-            int n=ans.size();
-            for(int j=0;j<n;j++)
+            vector<int>tmp;
+            for(int j=1;j<=n;j++)
             {
-                ans.push_back(ans[j]);
-                ans.back().push_back(nums[i]);
+                if(1<<(j-1) & i)
+                {
+                    tmp.push_back(nums[j-1]);
+                }
             }
+            ans.push_back(tmp);
+            tmp.clear();
         }
         return ans;
     }
 };
-
- // vector<vector<int>> subs = {{}};
- //        for (int num : nums) {
- //            int n = subs.size();
- //            for (int i = 0; i < n; i++) {
- //                subs.push_back(subs[i]); 
- //                subs.back().push_back(num);
- //            }
- //        }
- //        return subs;
