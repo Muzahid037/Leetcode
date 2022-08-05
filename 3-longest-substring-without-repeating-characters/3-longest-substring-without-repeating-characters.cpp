@@ -14,8 +14,8 @@ class Solution
                     // int shuru = max(left, pos[s[i]]);
                     len = (i - left) + 1;
                     ans = max(ans, len);
-                     // cout << i << " " << s[i] << " " << len << endl;
-                    left = max(left, pos[s[i]] + 1);
+                     // cout << left << " " << pos[s[i]]<< endl;
+                    left =max(left,pos[s[i]] + 1);
                 }
                 pos[s[i]] = i + 1;
             }
