@@ -1,22 +1,26 @@
-class Solution {
-public:
-    int lengthOfLongestSubstring(string s) {
-    int ans=0,n=s.size(),stIdx=1,len=0;
-        map<int,int>pos;
-        for(int i=0;i<n;i++)
+class Solution
+{
+    public:
+        int lengthOfLongestSubstring(string s)
         {
-            if(pos[s[i]-'a']>0)
+            int n = s.size();
+            if (n < 2) return n;
+            int left = 1, len, ans = 0;
+            unordered_map<char, int> pos;
+            for (int i = 0; i < n; i++)
             {
-                stIdx=max(stIdx,pos[s[i]-'a']);
-                len=(i+1)-stIdx;
+                if (pos[s[i]] > 0)
+                {
+                    // int shuru = max(left, pos[s[i]]);
+                    len = (i - left) + 1;
+                    ans = max(ans, len);
+                     // cout << i << " " << s[i] << " " << len << endl;
+                    left = max(left, pos[s[i]] + 1);
+                }
+                pos[s[i]] = i + 1;
             }
-            else
-            {
-                len++;
-            }
-            ans=max(ans,len);
-            pos[s[i]-'a']=i+1;
-    }
-        return ans;
-    }
+            len = (n - left) + 1;
+            ans = max(ans, len);
+            return ans;
+        }
 };
