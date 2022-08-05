@@ -11,10 +11,8 @@ class Solution
             {
                 if (pos[s[i]] > 0)
                 {
-                   	// int shuru = max(left, pos[s[i]]);
                     len = (i - left) + 1;
                     ans = max(ans, len);
-                    cout << i << " " << left << " " << pos[s[i]] << endl;
                     left = max(left, pos[s[i]] + 1);
                 }
                 pos[s[i]] = i + 1;
